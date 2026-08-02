@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>CloudSec Scan Report</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, sans-serif; background:#0B0F14; color:#E6EDF3; margin:0; padding:32px; }
+  h1 { font-weight:600; }
+  .meta { color:#7C8B9C; margin-bottom:24px; }
+  .score { font-size:48px; font-weight:700; }
+  table { width:100%; border-collapse:collapse; margin-top:24px; }
+  th, td { text-align:left; padding:10px 12px; border-bottom:1px solid #232C38; font-size:14px; }
+  th { color:#7C8B9C; font-weight:600; text-transform:uppercase; font-size:11px; letter-spacing:0.05em; }
+  .badge { padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; color:#0B0F14; }
+  code { color:#2DD4BF; }
+</style></head>
+<body>
+  <h1>CloudSec Scanner Report</h1>
+  <div class="meta">Provider: multi-cloud &middot; Account: demo-org &middot; Generated: 2026-08-02T03:18:46.344042+00:00</div>
+  <div class="score">19<span style="font-size:16px;color:#7C8B9C">/100 posture score</span></div>
+  <table>
+    <thead><tr><th>Severity</th><th>Category</th><th>Resource Type</th><th>Resource</th><th>Region</th><th>Description</th></tr></thead>
+    <tbody>
+        <tr>
+          <td><span class="badge" style="background:#E5484D">CRITICAL</span></td>
+          <td>IAM</td>
+          <td>iam_root</td>
+          <td><code>root-account</code></td>
+          <td>global</td>
+          <td>The root account has one or more active access keys.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#E5484D">CRITICAL</span></td>
+          <td>MISCONFIGURATION</td>
+          <td>s3_bucket</td>
+          <td><code>prod-customer-uploads</code></td>
+          <td>global</td>
+          <td>Bucket 'prod-customer-uploads' policy grants public access per S3's policy-status evaluation.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#E5484D">CRITICAL</span></td>
+          <td>NETWORK</td>
+          <td>security_group</td>
+          <td><code>sg-0a1b2c3d4e</code></td>
+          <td>us-east-1</td>
+          <td>Security group 'db-access' allows inbound MySQL (port 3306) from 0.0.0.0/0.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#E5484D">CRITICAL</span></td>
+          <td>NETWORK</td>
+          <td>rds_instance</td>
+          <td><code>arn:aws:rds:us-east-1:123456789012:db:prod-primary</code></td>
+          <td>us-east-1</td>
+          <td>RDS instance 'prod-primary' has PubliclyAccessible=true.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#E5484D">CRITICAL</span></td>
+          <td>IAM</td>
+          <td>iam_policy</td>
+          <td><code>arn:aws:iam::123456789012:policy/legacy-full-access</code></td>
+          <td>global</td>
+          <td>Policy 'legacy-full-access' allows Action:* on Resource:*.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#E5484D">CRITICAL</span></td>
+          <td>NETWORK</td>
+          <td>network_security_group</td>
+          <td><code>/subscriptions/xxx/resourceGroups/prod-rg/providers/Microsoft.Network/networkSecurityGroups/prod-nsg</code></td>
+          <td>eastus</td>
+          <td>NSG 'prod-nsg' rule 'allow-rdp-any' allows inbound RDP (port 3389) from the public internet.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#E5484D">CRITICAL</span></td>
+          <td>NETWORK</td>
+          <td>firewall_rule</td>
+          <td><code>allow-ssh-all</code></td>
+          <td>global</td>
+          <td>Firewall rule 'allow-ssh-all' allows inbound SSH (22) from 0.0.0.0/0.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#F5A623">HIGH</span></td>
+          <td>IAM</td>
+          <td>iam_user</td>
+          <td><code>arn:aws:iam::123456789012:user/j.patel</code></td>
+          <td>global</td>
+          <td>IAM user 'j.patel' can sign in with a password but has no MFA device.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#F5A623">HIGH</span></td>
+          <td>MISCONFIGURATION</td>
+          <td>s3_bucket</td>
+          <td><code>internal-logs-archive</code></td>
+          <td>global</td>
+          <td>Bucket 'internal-logs-archive' does not have all Public Access Block settings enabled.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#F5A623">HIGH</span></td>
+          <td>ENCRYPTION</td>
+          <td>rds_instance</td>
+          <td><code>arn:aws:rds:eu-west-1:123456789012:db:analytics-replica</code></td>
+          <td>eu-west-1</td>
+          <td>RDS instance 'analytics-replica' does not have storage encryption enabled.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#F5A623">HIGH</span></td>
+          <td>SECRETS</td>
+          <td>lambda_function</td>
+          <td><code>arn:aws:lambda:us-east-1:123456789012:function:payment-webhook</code></td>
+          <td>us-east-1</td>
+          <td>Function 'payment-webhook' has env vars named like secrets (STRIPE_SECRET_KEY) but no KMS key configured.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#F5A623">HIGH</span></td>
+          <td>MISCONFIGURATION</td>
+          <td>storage_account</td>
+          <td><code>/subscriptions/xxx/resourceGroups/data-rg/providers/Microsoft.Storage/storageAccounts/sharedassets001</code></td>
+          <td>westeurope</td>
+          <td>Storage account 'sharedassets001' has allowBlobPublicAccess enabled.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#4A9EFF">MEDIUM</span></td>
+          <td>IAM</td>
+          <td>iam_access_key</td>
+          <td><code>AKIA4EXAMPLE1234567</code></td>
+          <td>global</td>
+          <td>Access key AKIA4EXAMPLE1234567 for user 'ci-deploy-bot' is 214 days old.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#4A9EFF">MEDIUM</span></td>
+          <td>ENCRYPTION</td>
+          <td>s3_bucket</td>
+          <td><code>marketing-assets</code></td>
+          <td>global</td>
+          <td>Bucket 'marketing-assets' has no default encryption configuration.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#4A9EFF">MEDIUM</span></td>
+          <td>LOGGING</td>
+          <td>vpc</td>
+          <td><code>vpc-0f9e8d7c6b</code></td>
+          <td>us-east-1</td>
+          <td>VPC vpc-0f9e8d7c6b in us-east-1 has no Flow Logs.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#4A9EFF">MEDIUM</span></td>
+          <td>ENCRYPTION</td>
+          <td>ebs_volume</td>
+          <td><code>vol-0123456789abcdef0</code></td>
+          <td>us-west-2</td>
+          <td>EBS volume vol-0123456789abcdef0 is unencrypted.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#4A9EFF">MEDIUM</span></td>
+          <td>MISCONFIGURATION</td>
+          <td>gcs_bucket</td>
+          <td><code>gs://staging-build-artifacts</code></td>
+          <td>us-central1</td>
+          <td>Bucket 'gs://staging-build-artifacts' grants role 'roles/storage.objectViewer' to allUsers.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#6B7785">LOW</span></td>
+          <td>NETWORK</td>
+          <td>vpc</td>
+          <td><code>vpc-default01</code></td>
+          <td>ap-southeast-1</td>
+          <td>Default VPC vpc-default01 exists in ap-southeast-1.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#6B7785">LOW</span></td>
+          <td>MISCONFIGURATION</td>
+          <td>s3_bucket</td>
+          <td><code>terraform-state-backups</code></td>
+          <td>global</td>
+          <td>Bucket 'terraform-state-backups' does not have versioning enabled.</td>
+        </tr>
+        <tr>
+          <td><span class="badge" style="background:#6B7785">LOW</span></td>
+          <td>SECRETS</td>
+          <td>secretsmanager_secret</td>
+          <td><code>arn:aws:secretsmanager:us-east-1:123456789012:secret:db-creds-Ab12Cd</code></td>
+          <td>us-east-1</td>
+          <td>Secret 'db-creds' does not have automatic rotation enabled.</td>
+        </tr></tbody>
+  </table>
+</body></html>
